@@ -16,6 +16,11 @@ async function PostPage(props: PageProps<"/posts/[postId]">) {
     notFound();
   }
 
+  // await prisma.post.update({
+  //   where: { id: postId },
+  //   data: { views: { increment: 1 } },
+  // });
+
   return (
     <div className="space-y-4">
       <h1 className="font-bold text-4xl">{post.title}</h1>
