@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 // Not a server action
 function test() {
@@ -12,12 +13,15 @@ export async function createPost() {
 
   const post = await prisma.post.create({
     data: {
-      title: "My Post",
+      title: "Another Post",
       content: "Created from a server function!",
     },
   });
 
   console.log(post);
+
+  // revalidatePath("/");
+  revalidatePath("/posts");
 
   return post;
 }
